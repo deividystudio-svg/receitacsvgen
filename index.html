@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1D33">
+<title>Sobras de Bagagem · Receita Federal GRU</title>
+<style>
+  :root{
+    --bg:#0B1D33;
+    --bg-2:#081527;
+    --surface:#12294A;
+    --surface-2:#1B3A5F;
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --text:#F2F6FA;
+    --text-muted:#93A9C4;
+    --accent:#F5A623;
+    --accent-ink:#231506;
+    --success:#2ECC71;
+    --success-ink:#06210F;
+    --danger:#FF6B5B;
+    --danger-ink:#2A0704;
+    --radius:16px;
+    --font-display: -apple-system, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+    --font-body: -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+  html,body{
+    margin:0; padding:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body{
+    background-image:
+      radial-gradient(circle at 100% 0%, rgba(245,166,35,0.10), transparent 45%),
+      radial-gradient(circle at 0% 100%, rgba(46,204,113,0.06), transparent 40%);
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .wrap{ max-width: 720px; margin: 0 auto; padding: 20px 16px 8px; }
+
+  /* ---------- header ---------- */
+  header.top{
+    padding: 18px 4px 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow .dot{ width:6px;height:6px;border-radius:50%; background:var(--accent); }
+  h1{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin: 6px 0 2px;
+  }
+  .sub{ color: var(--text-muted); font-size: 13.5px; line-height:1.5; margin:0; }
+
+  details.help{
+    margin-top:12px;
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  details.help summary{
+    cursor:pointer; font-weight:700; font-size:13.5px;
+    display:flex; align-items:center; justify-content:space-between;
+    list-style:none;
+  }
+  details.help summary::-webkit-details-marker{ display:none; }
+  details.help summary:after{ content:"▾"; color:var(--text-muted); transition: transform .15s; }
+  details.help[open] summary:after{ transform: rotate(180deg); }
+  details.help ol{ margin: 10px 0 2px; padding-left: 20px; color:var(--text-muted); font-size:13px; line-height:1.65; }
+  details.help a{ color: var(--accent); }
+
+  /* ---------- sections ---------- */
+  section.block{ margin-bottom: 22px; }
+  .block-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom: 10px; padding: 0 2px;
+  }
+  .block-title{
+    font-family: var(--font-display);
+    font-weight:800; font-size:15px;
+    text-transform: uppercase; letter-spacing:.04em;
+  }
+  .block-count{
+    font-family: var(--font-mono); font-size:12px; color: var(--text-muted);
+  }
+
+  .field{ margin-bottom: 12px; }
+  .field label{
+    display:block; font-size:12px; font-weight:700;
+    color: var(--text-muted); text-transform:uppercase; letter-spacing:.04em;
+    margin-bottom:6px;
+  }
+  .field .req{ color: var(--accent); }
+  input[type=text], input[type=date], select, textarea{
+    width:100%;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border-strong);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 12px;
+    font-size: 16px; /* prevents iOS auto-zoom */
+    font-family: var(--font-body);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input.mono, select.mono{ font-family: var(--font-mono); letter-spacing:.03em; }
+  input::placeholder{ color: #5E7793; }
+  input:focus, select:focus, textarea:focus{
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.20);
+  }
+  input.invalid, select.invalid{
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(255,107,91,0.18);
+  }
+  select{
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 32px;
+  }
+
+  .company-card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  /* ---------- funcionario cards ---------- */
+  .staff-card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+    position: relative;
+  }
+  .staff-card .field{ margin-bottom:0; }
+  .staff-card .field.full{ grid-column: 1 / -1; }
+
+  /* ---------- baggage tag cards ---------- */
+  .tag-card{
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 16px 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .tag-card:before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:6px;
+    background: var(--accent);
+    opacity:.85;
+  }
+  .tag-card.ok:before{ background: var(--success); }
+  .tag-card .tag-top{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom: 12px;
+  }
+  .tag-index{
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing:.08em; text-transform: uppercase;
+  }
+  .tag-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+  }
+  .tag-grid .field.full{ grid-column: 1 / -1; }
+  .tag-grid .field{ margin-bottom:0; }
+
+  .barcode{
+    margin-top: 14px;
+    height: 26px;
+    border-radius: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 2px,
+      transparent 2px, transparent 4px,
+      rgba(255,255,255,0.55) 4px, rgba(255,255,255,0.55) 5px,
+      transparent 5px, transparent 8px,
+      rgba(255,255,255,0.55) 8px, rgba(255,255,255,0.55) 11px,
+      transparent 11px, transparent 13px
+    );
+    opacity: .35;
+  }
+
+  .icon-btn{
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 12px; font-weight:700;
+    padding: 6px 10px;
+    cursor:pointer;
+  }
+  .icon-btn:active{ background: rgba(255,255,255,0.06); }
+  .icon-btn.danger{ color: var(--danger); border-color: rgba(255,107,91,0.4); }
+
+  .add-btn{
+    width:100%;
+    background: var(--surface-2);
+    border: 1.5px dashed var(--border-strong);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 14px; font-weight:700;
+    font-family: var(--font-body);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .add-btn:active{ background: var(--surface); }
+
+  /* ---------- toast ---------- */
+  #toast{
+    position: fixed; left:16px; right:16px; top: 14px;
+    z-index: 60;
+    display:flex; flex-direction:column; gap:8px;
+    pointer-events:none;
+  }
+  .toast-msg{
+    background: var(--danger-ink);
+    border: 1px solid var(--danger);
+    color: #FFD9D3;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 13.5px; font-weight:600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    animation: slidein .18s ease-out;
+  }
+  .toast-msg.success{
+    background: var(--success-ink);
+    border-color: var(--success);
+    color: #CFF7DF;
+  }
+  @keyframes slidein{ from{ transform: translateY(-8px); opacity:0;} to{ transform:none; opacity:1; } }
+
+  /* ---------- action bar ---------- */
+  .actionbar{
+    position: fixed; left:0; right:0; bottom:0;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, var(--bg-2) 60%, rgba(8,21,39,0));
+    display:flex; gap:10px;
+    z-index: 50;
+  }
+  .btn{
+    flex:1;
+    border:none; border-radius: 12px;
+    padding: 15px 10px;
+    font-size: 14.5px; font-weight:800;
+    font-family: var(--font-display);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .btn-primary{ background: var(--accent); color: var(--accent-ink); flex:1.4; }
+  .btn-primary:active{ filter: brightness(0.92); }
+  .btn-secondary{ background: var(--surface-2); color: var(--text); border:1px solid var(--border-strong); }
+  .btn-secondary:active{ background: var(--surface); }
+  .btn-ghost{ background:transparent; color: var(--danger); border:1px solid rgba(255,107,91,0.35); flex:0.7; }
+
+  .draft-note{
+    font-size: 11.5px; color: var(--text-muted); text-align:center;
+    margin: 4px 2px 18px; font-family: var(--font-mono);
+  }
+
+  footer.legal{
+    text-align:center; color: var(--text-muted); font-size: 11px;
+    padding: 10px 16px 6px; line-height:1.6;
+  }
+
+  @media (max-width: 380px){
+    .staff-card, .tag-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- scan-enabled fields ---------- */
+  .field-with-scan{ display:flex; gap:6px; align-items:stretch; }
+  .field-with-scan input{ flex:1; }
+  .scan-btn{
+    flex: 0 0 44px;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border-strong);
+    border-radius: 10px;
+    color: var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    padding:0;
+  }
+  .scan-btn:active{ background: var(--surface); }
+  .scan-btn svg{ width:20px; height:20px; }
+
+  /* ---------- scanner overlay ---------- */
+  .scanner-overlay{
+    position: fixed; inset:0; z-index: 100;
+    background: #000;
+    display:flex; flex-direction:column;
+  }
+  .scanner-overlay video{
+    flex:1; width:100%; height:100%; object-fit: cover;
+    background:#000;
+  }
+  .scanner-frame{
+    position:absolute; left:50%; top:50%;
+    transform: translate(-50%,-50%);
+    width: 78%; max-width: 420px; height: 120px;
+    border: 2.5px solid var(--accent);
+    border-radius: 12px;
+    box-shadow: 0 0 0 2000px rgba(0,0,0,0.45);
+    pointer-events:none;
+  }
+  .scanner-top{
+    position:absolute; top: calc(14px + env(safe-area-inset-top)); left:16px; right:16px;
+    display:flex; align-items:center; justify-content:space-between;
+    z-index: 2;
+  }
+  .scanner-label{
+    color:#fff; font-family: var(--font-mono); font-size:12.5px;
+    background: rgba(0,0,0,0.5); padding:6px 10px; border-radius:8px;
+  }
+  .scanner-close{
+    background: rgba(0,0,0,0.55); color:#fff; border:1px solid rgba(255,255,255,0.3);
+    border-radius: 20px; width:36px; height:36px; font-size:18px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+  }
+  .scanner-hint{
+    position:absolute; bottom: calc(28px + env(safe-area-inset-bottom)); left:16px; right:16px;
+    text-align:center; color:#fff; font-size:13px;
+    background: rgba(0,0,0,0.45); padding:10px 14px; border-radius:10px;
+  }
+
+  .backlink-merge{
+    display:block; margin-top:12px; font-size:12.5px; color: var(--accent);
+    text-decoration:none; font-weight:700;
+  }
+
+  /* ---------- tabs ---------- */
+  .tabs{
+    display:flex; gap:6px;
+    background: var(--surface-2);
+    padding:5px; border-radius: 14px;
+    margin: 18px 0 20px;
+  }
+  .tab-btn{
+    flex:1; border:none; background:transparent;
+    padding: 11px 8px; border-radius: 10px;
+    font-family: var(--font-display); font-weight:800; font-size:13.5px;
+    color: var(--text-muted); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .tab-btn.active{ background: var(--surface); color: var(--text); }
+  .tab-btn .tab-badge{
+    font-family: var(--font-mono); font-size:10.5px; font-weight:700;
+    background: rgba(245,166,35,0.20); color: var(--accent);
+    border-radius: 20px; padding: 1px 7px;
+  }
+  .tab-btn .tab-badge.has-pares{ background: var(--success); color:#06210F; }
+
+  /* ---------- reservas tab ---------- */
+  .reservas-summary{
+    display:flex; gap:10px;
+    margin-bottom: 16px;
+  }
+  .res-sum-item{
+    flex:1;
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 12px;
+    text-align:center;
+  }
+  .res-sum-num{
+    display:block; font-family: var(--font-display); font-weight:800;
+    font-size: 26px; line-height:1.1;
+  }
+  .res-sum-item.par .res-sum-num{ color: var(--success); }
+  .res-sum-item.avulsa .res-sum-num{ color: var(--accent); }
+  .res-sum-label{
+    display:block; font-size:11.5px; color: var(--text-muted);
+    margin-top:2px; font-weight:600;
+  }
+
+  .res-empty{
+    background: var(--surface);
+    border:1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: 26px 20px;
+    text-align:center;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height:1.6;
+  }
+
+  .res-card{
+    position:relative;
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    overflow:hidden;
+  }
+  .res-card:before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:6px;
+    background: var(--accent);
+    opacity:.85;
+  }
+  .res-card.par:before{ background: var(--success); }
+  .res-card-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom: 10px;
+  }
+  .res-code{
+    font-family: var(--font-mono); font-weight:800; font-size:16px;
+    letter-spacing: .03em; color: var(--text);
+  }
+  .res-badge{
+    font-family: var(--font-mono); font-size:11px; font-weight:700;
+    padding: 3px 10px; border-radius:20px;
+    background: var(--surface-2); color: var(--text-muted);
+  }
+  .res-card.par .res-badge{ background: var(--success); color:#06210F; }
+  .res-item-row{
+    display:grid; grid-template-columns: 1fr 1.2fr auto;
+    gap: 8px; align-items:center;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  .res-item-row + .res-item-row{ border-top: 1px solid var(--border); }
+  .res-item-etq{ font-family: var(--font-mono); font-weight:700; color: var(--text); }
+  .res-item-cor{ color: var(--text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .res-item-sit{
+    font-family: var(--font-mono); font-size:10.5px; font-weight:700;
+    background: var(--surface-2); color: var(--text-muted);
+    padding: 2px 7px; border-radius: 10px; justify-self:end;
+  }
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow"><span class="dot"></span>Alfândega GRU · Sobras de bagagem</div>
+    <h1>Declaração de Bagagens</h1>
+    <p class="sub">Gere o arquivo para enviar à Receita Federal — funciona offline, direto do navegador do celular.</p>
+
+    <details class="help">
+      <summary>Como enviar</summary>
+      <ol>
+        <li>Preencha os campos abaixo e toque em <strong>Gerar CSV</strong>.</li>
+        <li>Toque em <strong>Compartilhar</strong> e envie por e-mail para
+          <a href="mailto:alfgru.bagagem@rfb.gov.br">alfgru.bagagem@rfb.gov.br</a>.</li>
+        <li>Assunto do e-mail: <strong>LISTA DE SOBRAS</strong>.</li>
+      </ol>
+    </details>
+    <a class="backlink-merge" href="https://deividystudio-svg.github.io/CSVCOMBINE/" target="_blank" rel="noopener">Juntar CSVs de vários agentes →</a>
+  </header>
+
+  <div class="tabs">
+    <button type="button" class="tab-btn active" data-tab="form">Bagagens</button>
+    <button type="button" class="tab-btn" data-tab="reservas">
+      Reservas <span class="tab-badge" id="tabResBadge">0</span>
+    </button>
+  </div>
+
+  <div id="tabForm" class="tab-panel">
+  <section class="block">
+    <div class="block-head">
+      <div class="block-title">Informações</div>
+    </div>
+    <div class="company-card">
+      <div class="field">
+        <label for="cia_aerea">Companhia Aérea <span class="req">*</span></label>
+        <input type="text" id="cia_aerea" class="mono" maxlength="30" placeholder="Ex: LATAM" autocapitalize="characters">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <div class="block-title">Funcionários</div>
+      <div class="block-count" id="staffCount">0</div>
+    </div>
+    <div id="staffList"></div>
+    <button type="button" class="add-btn" id="addStaff">+ Adicionar funcionário</button>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <div class="block-title">Bagagens</div>
+      <div class="block-count" id="bagCount">0</div>
+    </div>
+    <div id="bagList"></div>
+    <button type="button" class="add-btn" id="addBag">+ Adicionar bagagem</button>
+  </section>
+
+  <p class="draft-note" id="draftNote"></p>
+  </div>
+
+  <div id="tabReservas" class="tab-panel" style="display:none;">
+    <section class="block">
+      <div class="block-head">
+        <div class="block-title">Pares de reserva</div>
+      </div>
+      <div class="reservas-summary" id="reservasSummary"></div>
+      <div id="reservasList"></div>
+    </section>
+  </div>
+
+  <footer class="legal">
+    Formulário não-oficial baseado no modelo da Receita Federal do Brasil · uso interno GRU
+  </footer>
+</div>
+
+<div class="actionbar">
+  <button type="button" class="btn btn-ghost" id="btnClear" title="Limpar tudo">Limpar</button>
+  <button type="button" class="btn btn-secondary" id="btnShare">Compartilhar</button>
+  <button type="button" class="btn btn-primary" id="btnGenerate">Gerar CSV</button>
+</div>
+
+<div class="scanner-overlay" id="scannerOverlay" style="display:none;">
+  <div class="scanner-top">
+    <span class="scanner-label" id="scannerLabel">ETIQUETA</span>
+    <div class="scanner-close" id="scannerClose">✕</div>
+  </div>
+  <video id="scannerVideo" playsinline autoplay muted></video>
+  <div class="scanner-frame"></div>
+  <div class="scanner-hint">Aponte para o código de barras da etiqueta</div>
+</div>
+
+<script src="https://unpkg.com/@zxing/library@0.20.0/umd/index.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "sobras_bagagem_draft_v1";
+  var SITUACOES = [
+    ["", ""],
+    ["PR", "PR — Processo PIR"],
+    ["LI", "LI — Liberação"],
+    ["CI", "CI — Conexão internacional"],
+    ["73", "73 — Abandonada"],
+    ["RT", "RT — Retirada"],
+    ["RP", "RP — Achados e perdidos"],
+    ["SE", "SE — Sem etiqueta"],
+    ["NE", "NE — Não embarcado"],
+    ["OT", "OT — Outra situação"]
+  ];
+
+  var staffList = document.getElementById("staffList");
+  var bagList = document.getElementById("bagList");
+  var staffCountEl = document.getElementById("staffCount");
+  var bagCountEl = document.getElementById("bagCount");
+
+  var staffSeq = 0;
+  var bagSeq = 0;
+
+  var SCAN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M4 17v2a1 1 0 0 0 1 1h2M20 7V5a1 1 0 0 0-1-1h-2M20 17v2a1 1 0 0 1-1 1h-2M4 12h16"/></svg>';
+
+  function todayISO(){
+    var d = new Date();
+    var m = String(d.getMonth()+1).padStart(2,"0");
+    var day = String(d.getDate()).padStart(2,"0");
+    return d.getFullYear() + "-" + m + "-" + day;
+  }
+
+  function isoToBR(iso){
+    if(!iso) return "";
+    var p = iso.split("-");
+    if(p.length!==3) return iso;
+    return p[2] + "/" + p[1] + "/" + p[0];
+  }
+
+  /* ---------------- staff cards ---------------- */
+  function addStaffCard(data){
+    data = data || {};
+    staffSeq++;
+    var id = "s" + staffSeq;
+    var card = document.createElement("div");
+    card.className = "staff-card";
+    card.dataset.id = id;
+    card.innerHTML =
+      '<div class="field full">' +
+        '<label>Nome <span class="req">*</span></label>' +
+        '<input type="text" class="nome_funci" maxlength="30" placeholder="Nome completo">' +
+      '</div>' +
+      '<div class="field full">' +
+        '<label>Matrícula GRU <span class="req">*</span></label>' +
+        '<input type="text" class="matricula_funci mono" maxlength="10" placeholder="Matrícula" inputmode="numeric">' +
+      '</div>' +
+      '<div style="grid-column:1/-1; display:flex; justify-content:flex-end;">' +
+        '<button type="button" class="icon-btn danger remove-staff">remover</button>' +
+      '</div>';
+    staffList.appendChild(card);
+    card.querySelector(".nome_funci").value = data.nome || "";
+    card.querySelector(".matricula_funci").value = data.matricula || "";
+    card.querySelector(".remove-staff").addEventListener("click", function(){
+      staffList.removeChild(card);
+      refreshCounts();
+      saveDraft();
+    });
+    card.addEventListener("input", saveDraft);
+    refreshCounts();
+    return card;
+  }
+
+  /* ---------------- baggage tag cards ---------------- */
+  function addBagCard(data){
+    data = data || {};
+    bagSeq++;
+    var id = "b" + bagSeq;
+    var card = document.createElement("div");
+    card.className = "tag-card";
+    card.dataset.id = id;
+
+    var opts = SITUACOES.map(function(o){
+      return '<option value="'+o[0]+'">'+(o[1]||"")+'</option>';
+    }).join("");
+
+    card.innerHTML =
+      '<div class="tag-top">' +
+        '<span class="tag-index">Bagagem #' + bagSeq + '</span>' +
+        '<button type="button" class="icon-btn danger remove-bag">remover</button>' +
+      '</div>' +
+      '<div class="tag-grid">' +
+        '<div class="field full">' +
+          '<label>Situação <span class="req">*</span></label>' +
+          '<select class="tipoViajante">' + opts + '</select>' +
+        '</div>' +
+        '<div class="field">' +
+          '<label>Etiqueta</label>' +
+          '<div class="field-with-scan">' +
+            '<input type="text" class="etiqueta mono" maxlength="8" placeholder="ABC12345" autocapitalize="characters">' +
+            '<div class="scan-btn scan-etiqueta" title="Ler código de barras">' + SCAN_ICON + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="field">' +
+          '<label>Reserva</label>' +
+          '<div class="field-with-scan">' +
+            '<input type="text" class="reserva mono" maxlength="6" placeholder="ABC123" autocapitalize="characters">' +
+            '<div class="scan-btn scan-reserva" title="Ler código de barras">' + SCAN_ICON + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="field">' +
+          '<label>Voo de origem <span class="req">*</span></label>' +
+          '<input type="text" class="voo_origem mono" maxlength="10" placeholder="LA1234" autocapitalize="characters">' +
+        '</div>' +
+        '<div class="field">' +
+          '<label>Data do voo <span class="req">*</span></label>' +
+          '<input type="date" class="data_voo_origem mono">' +
+        '</div>' +
+        '<div class="field full">' +
+          '<label>Cor e tipo <span class="req">*</span></label>' +
+          '<input type="text" class="cor_tipo" maxlength="7" placeholder="Ex: PT MALA">' +
+        '</div>' +
+        '<div class="field full">' +
+          '<label>Observação</label>' +
+          '<input type="text" class="observacao" maxlength="100" placeholder="opcional">' +
+        '</div>' +
+      '</div>' +
+      '<div class="barcode"></div>';
+
+    bagList.appendChild(card);
+
+    card.querySelector(".tipoViajante").value = data.tipoViajante || "";
+    card.querySelector(".etiqueta").value = data.etiqueta || "";
+    card.querySelector(".reserva").value = data.reserva || "";
+    card.querySelector(".voo_origem").value = data.voo_origem || "";
+    card.querySelector(".data_voo_origem").value = data.data_voo_origem || todayISO();
+    card.querySelector(".cor_tipo").value = data.cor_tipo || "";
+    card.querySelector(".observacao").value = data.observacao || "";
+
+    card.querySelector(".remove-bag").addEventListener("click", function(){
+      bagList.removeChild(card);
+      refreshCounts();
+      saveDraft();
+      renderReservas();
+    });
+
+    card.querySelector(".scan-etiqueta").addEventListener("click", function(){
+      openScanner(card.querySelector(".etiqueta"), "ETIQUETA");
+    });
+    card.querySelector(".scan-reserva").addEventListener("click", function(){
+      openScanner(card.querySelector(".reserva"), "RESERVA");
+    });
+
+    var upperFields = card.querySelectorAll(".etiqueta, .reserva, .voo_origem");
+    upperFields.forEach(function(inp){
+      inp.addEventListener("input", function(){
+        var pos = inp.selectionStart;
+        inp.value = inp.value.toUpperCase();
+        try{ inp.setSelectionRange(pos,pos); }catch(e){}
+      });
+    });
+
+    card.addEventListener("input", function(){ clearInvalid(card); saveDraft(); renderReservas(); });
+    card.addEventListener("change", function(){ clearInvalid(card); saveDraft(); renderReservas(); });
+
+    refreshCounts();
+    return card;
+  }
+
+  function clearInvalid(scope){
+    scope.querySelectorAll(".invalid").forEach(function(el){ el.classList.remove("invalid"); });
+  }
+
+  function refreshCounts(){
+    staffCountEl.textContent = staffList.children.length;
+    bagCountEl.textContent = bagList.children.length;
+    var idx = 1;
+    bagList.querySelectorAll(".tag-card").forEach(function(c){
+      c.querySelector(".tag-index").textContent = "Bagagem #" + (idx++);
+    });
+  }
+
+  document.getElementById("addStaff").addEventListener("click", function(){
+    addStaffCard();
+    saveDraft();
+  });
+  document.getElementById("addBag").addEventListener("click", function(){
+    addBagCard();
+    saveDraft();
+    renderReservas();
+    var last = bagList.lastElementChild;
+    if(last) last.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+  document.getElementById("cia_aerea").addEventListener("input", function(e){
+    var pos = e.target.selectionStart;
+    e.target.value = e.target.value.toUpperCase();
+    try{ e.target.setSelectionRange(pos,pos); }catch(err){}
+    saveDraft();
+  });
+
+  /* ---------------- tabs ---------------- */
+  var tabButtons = document.querySelectorAll(".tab-btn");
+  var tabForm = document.getElementById("tabForm");
+  var tabReservas = document.getElementById("tabReservas");
+  tabButtons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      tabButtons.forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      var target = btn.dataset.tab;
+      tabForm.style.display = target === "form" ? "" : "none";
+      tabReservas.style.display = target === "reservas" ? "" : "none";
+      if(target === "reservas") renderReservas();
+    });
+  });
+
+  /* ---------------- reservas (agrupamento) ---------------- */
+  function computeReservaGroups(){
+    var groups = {};
+    var order = [];
+    bagList.querySelectorAll(".tag-card").forEach(function(c){
+      var reserva = c.querySelector(".reserva").value.trim().toUpperCase();
+      if(!reserva) return;
+      var etiqueta = c.querySelector(".etiqueta").value.trim().toUpperCase();
+      var corTipo = c.querySelector(".cor_tipo").value.trim();
+      var situacao = c.querySelector(".tipoViajante").value;
+      if(!groups[reserva]){ groups[reserva] = []; order.push(reserva); }
+      groups[reserva].push({ etiqueta: etiqueta, corTipo: corTipo, situacao: situacao });
+    });
+    return { groups: groups, keys: order };
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  function renderReservas(){
+    var data = computeReservaGroups();
+    var groups = data.groups;
+    var keys = data.keys.slice();
+
+    keys.sort(function(a,b){
+      var ca = groups[a].length, cb = groups[b].length;
+      if(cb !== ca) return cb - ca;
+      return a.localeCompare(b);
+    });
+
+    var pares = keys.filter(function(k){ return groups[k].length >= 2; }).length;
+    var avulsas = keys.length - pares;
+
+    var tabBadge = document.getElementById("tabResBadge");
+    tabBadge.textContent = pares;
+    tabBadge.classList.toggle("has-pares", pares > 0);
+
+    document.getElementById("reservasSummary").innerHTML =
+      '<div class="res-sum-item par"><span class="res-sum-num">' + pares + '</span><span class="res-sum-label">par(es) formado(s)</span></div>' +
+      '<div class="res-sum-item avulsa"><span class="res-sum-num">' + avulsas + '</span><span class="res-sum-label">aguardando par</span></div>';
+
+    var list = document.getElementById("reservasList");
+    if(keys.length === 0){
+      list.innerHTML = '<div class="res-empty">Nenhuma reserva preenchida ainda.<br>Preencha o campo Reserva nas bagagens da aba Bagagens para ver os agrupamentos aqui.</div>';
+      return;
+    }
+
+    list.innerHTML = keys.map(function(k){
+      var items = groups[k];
+      var isPar = items.length >= 2;
+      var rows = items.map(function(it){
+        return '<div class="res-item-row">' +
+          '<span class="res-item-etq">' + escapeHtml(it.etiqueta || "—") + '</span>' +
+          '<span class="res-item-cor">' + escapeHtml(it.corTipo || "—") + '</span>' +
+          '<span class="res-item-sit">' + escapeHtml(it.situacao || "—") + '</span>' +
+        '</div>';
+      }).join("");
+      return '<div class="res-card ' + (isPar ? "par" : "avulsa") + '">' +
+        '<div class="res-card-head">' +
+          '<span class="res-code">' + escapeHtml(k) + '</span>' +
+          '<span class="res-badge">' + items.length + (items.length === 1 ? " mala" : " malas") + '</span>' +
+        '</div>' +
+        '<div class="res-item-list">' + rows + '</div>' +
+      '</div>';
+    }).join("");
+  }
+
+  /* ---------------- toast ---------------- */
+  function toast(msg, type){
+    var box = document.getElementById("toast");
+    var el = document.createElement("div");
+    el.className = "toast-msg" + (type==="success" ? " success" : "");
+    el.textContent = msg;
+    box.appendChild(el);
+    setTimeout(function(){
+      el.style.transition = "opacity .25s";
+      el.style.opacity = "0";
+      setTimeout(function(){ box.removeChild(el); }, 250);
+    }, 2600);
+  }
+
+  /* ---------------- draft persistence ---------------- */
+  function collectState(){
+    var staff = [];
+    staffList.querySelectorAll(".staff-card").forEach(function(c){
+      staff.push({
+        nome: c.querySelector(".nome_funci").value,
+        matricula: c.querySelector(".matricula_funci").value
+      });
+    });
+    var bags = [];
+    bagList.querySelectorAll(".tag-card").forEach(function(c){
+      bags.push({
+        tipoViajante: c.querySelector(".tipoViajante").value,
+        etiqueta: c.querySelector(".etiqueta").value,
+        reserva: c.querySelector(".reserva").value,
+        voo_origem: c.querySelector(".voo_origem").value,
+        data_voo_origem: c.querySelector(".data_voo_origem").value,
+        cor_tipo: c.querySelector(".cor_tipo").value,
+        observacao: c.querySelector(".observacao").value
+      });
+    });
+    return {
+      cia_aerea: document.getElementById("cia_aerea").value,
+      staff: staff,
+      bags: bags,
+      savedAt: Date.now()
+    };
+  }
+
+  var saveTimer = null;
+  function saveDraft(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState()));
+        var note = document.getElementById("draftNote");
+        note.textContent = "Rascunho salvo neste aparelho";
+      }catch(e){ /* storage indisponível — segue sem salvar */ }
+    }, 250);
+  }
+
+  function loadDraft(){
+    var raw;
+    try{ raw = localStorage.getItem(STORAGE_KEY); }catch(e){ raw = null; }
+    if(!raw) return false;
+    var state;
+    try{ state = JSON.parse(raw); }catch(e){ return false; }
+    if(!state) return false;
+
+    document.getElementById("cia_aerea").value = state.cia_aerea || "";
+    (state.staff||[]).forEach(function(s){ addStaffCard(s); });
+    (state.bags||[]).forEach(function(b){ addBagCard(b); });
+
+    if((state.staff&&state.staff.length) || (state.bags&&state.bags.length) || state.cia_aerea){
+      document.getElementById("draftNote").textContent = "Rascunho anterior restaurado";
+      return true;
+    }
+    return false;
+  }
+
+  function clearAll(){
+    staffList.innerHTML = "";
+    bagList.innerHTML = "";
+    document.getElementById("cia_aerea").value = "";
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    document.getElementById("draftNote").textContent = "";
+    addStaffCard();
+    addBagCard();
+    refreshCounts();
+    renderReservas();
+  }
+
+  document.getElementById("btnClear").addEventListener("click", function(){
+    if(confirm("Limpar todos os campos preenchidos?")){
+      clearAll();
+    }
+  });
+
+  /* ---------------- CSV generation (mesmo formato do modelo oficial) ---------------- */
+  var lastCSV = null;
+  var lastFilename = null;
+
+  function pad2(n){ return n < 10 ? "0"+n : ""+n; }
+
+  function buildCSV(){
+    clearInvalid(document);
+
+    var ciaInput = document.getElementById("cia_aerea");
+    var cia_aerea = ciaInput.value.trim();
+    if(cia_aerea === ""){
+      ciaInput.classList.add("invalid");
+      ciaInput.scrollIntoView({behavior:"smooth", block:"center"});
+      toast("Preencha a Companhia Aérea");
+      return null;
+    }
+
+    var now = new Date();
+    var dia = pad2(now.getDate());
+    var mes = pad2(now.getMonth()+1);
+    var ano = now.getFullYear();
+    var data_hoje = dia + "/" + mes + "/" + ano;
+
+    var csv = "DATA_LEITURA, SITUACAO, ETIQUETA, RESERVA, VOO_ORIGEM, DATA_VOO_ORIGEM, COR_TIPO,OBSERVACAO\n";
+
+    var bagCards = bagList.querySelectorAll(".tag-card");
+    if(bagCards.length === 0){
+      toast("Adicione ao menos uma bagagem");
+      return null;
+    }
+
+    for(var i=0; i<bagCards.length; i++){
+      var card = bagCards[i];
+      var tipoSel = card.querySelector(".tipoViajante");
+      var tipoViajante = tipoSel.value;
+      if(tipoViajante === ""){
+        tipoSel.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": selecione a Situação");
+        return null;
+      }
+
+      var etiquetaInp = card.querySelector(".etiqueta");
+      var etiqueta = etiquetaInp.value.trim();
+      if(etiqueta === "" && tipoViajante !== "SE"){
+        etiquetaInp.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": preencha a Etiqueta");
+        return null;
+      }
+
+      var reservaInp = card.querySelector(".reserva");
+      var reserva = reservaInp.value.trim();
+      if(reserva === "" && tipoViajante !== "SE"){
+        reservaInp.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": preencha a Reserva");
+        return null;
+      }
+
+      var vooInp = card.querySelector(".voo_origem");
+      var voo_origem = vooInp.value.trim();
+      if(voo_origem === ""){
+        vooInp.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": preencha o Voo de Origem");
+        return null;
+      }
+
+      var dataInp = card.querySelector(".data_voo_origem");
+      var data_voo_origem_iso = dataInp.value;
+      if(data_voo_origem_iso === ""){
+        dataInp.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": preencha a Data do Voo");
+        return null;
+      }
+      var data_voo_origem = isoToBR(data_voo_origem_iso);
+
+      var corInp = card.querySelector(".cor_tipo");
+      var cor_tipo = corInp.value.trim();
+      if(cor_tipo === ""){
+        corInp.classList.add("invalid");
+        card.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Bagagem #" + (i+1) + ": preencha Cor e Tipo");
+        return null;
+      }
+
+      var observacao = card.querySelector(".observacao").value.trim();
+
+      csv += data_hoje + "," + tipoViajante + "," + etiqueta + "," + reserva + "," +
+             voo_origem + "," + data_voo_origem + "," + cor_tipo + "," + observacao + "\n";
+
+      card.classList.add("ok");
+    }
+
+    var staffCards = staffList.querySelectorAll(".staff-card");
+    for(var j=0; j<staffCards.length; j++){
+      var scard = staffCards[j];
+      var nomeInp = scard.querySelector(".nome_funci");
+      var nome_funci = nomeInp.value.trim();
+      var matInp = scard.querySelector(".matricula_funci");
+      var matricula_funci = matInp.value.trim();
+
+      if(nome_funci === "" && matricula_funci === ""){
+        continue; // funcionário em branco = ignorado, não bloqueia (mais tolerante que o original)
+      }
+      if(nome_funci === ""){
+        nomeInp.classList.add("invalid");
+        scard.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Funcionário: preencha o Nome");
+        return null;
+      }
+      if(matricula_funci === ""){
+        matInp.classList.add("invalid");
+        scard.scrollIntoView({behavior:"smooth", block:"center"});
+        toast("Funcionário: preencha a Matrícula");
+        return null;
+      }
+      csv += data_hoje + ",FC,0,0,0,0,0," + nome_funci + " / " + matricula_funci + "\n";
+    }
+
+    var hora = pad2(now.getHours());
+    var minutos = pad2(now.getMinutes());
+    var filename = "sobras_" + cia_aerea.toLowerCase() + "_" + ano + mes + dia + "_" + hora + minutos + "-v1.csv";
+
+    return { csv: csv, filename: filename };
+  }
+
+  function downloadBlob(csv, filename){
+    var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 30000);
+  }
+
+  document.getElementById("btnGenerate").addEventListener("click", function(){
+    var result = buildCSV();
+    if(!result) return;
+    lastCSV = result.csv;
+    lastFilename = result.filename;
+    downloadBlob(result.csv, result.filename);
+    toast("CSV gerado: " + result.filename, "success");
+    saveDraft();
+  });
+
+  document.getElementById("btnShare").addEventListener("click", function(){
+    var result = lastCSV && lastFilename ? { csv: lastCSV, filename: lastFilename } : buildCSV();
+    if(!result) return;
+    lastCSV = result.csv;
+    lastFilename = result.filename;
+
+    var blob = new Blob([result.csv], { type: "text/csv" });
+    var file;
+    try{ file = new File([blob], result.filename, { type: "text/csv" }); }catch(e){ file = null; }
+
+    if(navigator.share && file && navigator.canShare && navigator.canShare({ files: [file] })){
+      navigator.share({ files: [file], title: result.filename })
+        .catch(function(){ /* usuário cancelou ou falhou — sem ação */ });
+    } else if(navigator.share){
+      downloadBlob(result.csv, result.filename);
+      toast("Arquivo baixado. Anexe manualmente no e-mail.", "success");
+    } else {
+      downloadBlob(result.csv, result.filename);
+      toast("Arquivo baixado para a pasta Downloads.", "success");
+    }
+    saveDraft();
+  });
+
+  /* ---------------- scanner de código de barras ---------------- */
+  var scannerOverlay = document.getElementById("scannerOverlay");
+  var scannerVideo = document.getElementById("scannerVideo");
+  var scannerLabel = document.getElementById("scannerLabel");
+  var zxingReader = null;
+  var activeStream = null;
+  var scanTargetInput = null;
+
+  function openScanner(inputEl, label){
+    if(typeof ZXing === "undefined"){
+      toast("Leitor de código de barras não carregou (sem internet no primeiro acesso). Digite manualmente.");
+      return;
+    }
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      toast("Este navegador não permite acesso à câmera aqui. Digite manualmente.");
+      return;
+    }
+    scanTargetInput = inputEl;
+    scannerLabel.textContent = label;
+    scannerOverlay.style.display = "flex";
+
+    var hints = new Map();
+    var formats = [
+      ZXing.BarcodeFormat.CODE_128,
+      ZXing.BarcodeFormat.CODE_39,
+      ZXing.BarcodeFormat.EAN_13,
+      ZXing.BarcodeFormat.QR_CODE,
+      ZXing.BarcodeFormat.ITF
+    ];
+    hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);
+    hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
+
+    zxingReader = new ZXing.BrowserMultiFormatReader(hints);
+
+    zxingReader.decodeFromConstraints(
+      { video: { facingMode: { ideal: "environment" } } },
+      scannerVideo,
+      function(result, err){
+        if(result){
+          var text = result.getText().trim().toUpperCase();
+          if(scanTargetInput){
+            scanTargetInput.value = text.slice(0, scanTargetInput.maxLength > 0 ? scanTargetInput.maxLength : text.length);
+            scanTargetInput.dispatchEvent(new Event("input", { bubbles:true }));
+          }
+          if(navigator.vibrate) navigator.vibrate(80);
+          toast("Código lido: " + text, "success");
+          closeScanner();
+        }
+      }
+    ).catch(function(err){
+      toast("Não foi possível acessar a câmera. Verifique a permissão do navegador.");
+      closeScanner();
+    });
+  }
+
+  function closeScanner(){
+    scannerOverlay.style.display = "none";
+    if(zxingReader){
+      try{ zxingReader.reset(); }catch(e){}
+      zxingReader = null;
+    }
+    if(scannerVideo.srcObject){
+      var tracks = scannerVideo.srcObject.getTracks ? scannerVideo.srcObject.getTracks() : [];
+      tracks.forEach(function(t){ t.stop(); });
+      scannerVideo.srcObject = null;
+    }
+    scanTargetInput = null;
+  }
+
+  document.getElementById("scannerClose").addEventListener("click", closeScanner);
+
+  /* ---------------- init ---------------- */
+  var restored = loadDraft();
+  if(!restored){
+    addStaffCard();
+    addBagCard();
+  }
+  refreshCounts();
+  renderReservas();
+})();
+</script>
+</body>
+</html>
